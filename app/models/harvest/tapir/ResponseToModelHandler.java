@@ -49,10 +49,11 @@ public class ResponseToModelHandler
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:Species", "specificEpithet");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:SubspeciesPhylum", "infraSpecificEpithet");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:ScientificNameAuthor", "scientificNameAuthorship");
-	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:IdentifiedBy", "identifiedBy");
-	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:YearIdentified", "dateIdentified");
-	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:MonthIdentified", "dateIdentified");
-	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:DayIdentified", "dateIdentified");
+	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcur:IdentifiedBy", "identifiedBy"); // by dd
+	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcur:DateIdentified", "dateIdentified"); // by dd
+	  //digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:YearIdentified", "dateIdentified");
+	  //digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:MonthIdentified", "dateIdentified");
+	  //digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:DayIdentified", "dateIdentified");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:TypeStatus", "typeStatus");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:FieldNumber", "fieldNumber");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:CollectorNumber", "recordNumber");
@@ -80,6 +81,7 @@ public class ResponseToModelHandler
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:PreviousCatalogNumber", "otherCatalogNumbers");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:RelationshipType", "relationshipOfResource");
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:RelatedCatalogItem", "associatedOccurrences");
+	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:RelatedInformation", "associatedReferences");// by dd
 	  digester.addBeanPropertySetter("*/dwrec:DarwinRecord/dwcore:Notes", "occurrenceRemarks");
 	  digester.addSetNext("*/dwrec:DarwinRecord", "add");
 	  digester.parse(inputStream);
