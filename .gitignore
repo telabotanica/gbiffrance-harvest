@@ -1,4 +1,6 @@
 /.settings
 /eclipse
+/precompiled
+/tmp
 /.classpath
 /.project
