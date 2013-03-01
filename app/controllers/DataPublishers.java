@@ -10,23 +10,22 @@ import play.mvc.Controller;
 
 public class DataPublishers extends Controller {
 	
-  public static void add(){
-	render();
-  }
+	public static void add(){
+		render();
+	}
 	
-  public static void save(@Required(message="Name is required") String name, 
-                          @Required(message="A description is required") String description,
-                          @Required(message="Administrative contact is required") String administrativeContact, 
-                          @Required(message="Technical contact is required") String technicalContact){
-    if(validation.hasErrors()){
-      params.flash(); // add http parameters to the flash scope
-      validation.keep(); // keep the errors for the next request
-      add();
-    }
-    else{
-      DataPublisher dataPublisher = new DataPublisher(name, description, administrativeContact, technicalContact);
-      dataPublisher.save();
-      Application.index();
-    }
-  }
+	public static void save(@Required(message="Name is required") String name, 
+			@Required(message="A description is required") String description,
+			@Required(message="Administrative contact is required") String administrativeContact, 
+			@Required(message="Technical contact is required") String technicalContact){
+		if (validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+			add();
+		} else {
+			DataPublisher dataPublisher = new DataPublisher(name, description, administrativeContact, technicalContact);
+			dataPublisher.save();
+			Application.index();
+		}
+	}
 }

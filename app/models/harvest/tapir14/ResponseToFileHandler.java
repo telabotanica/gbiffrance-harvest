@@ -1,4 +1,4 @@
-package models.harvest.digir;
+package models.harvest.tapir14;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -27,9 +27,11 @@ public class ResponseToFileHandler implements ResponseHandler<Void> {
 			IOUtils.copy(contentStream, gos);
 			gos.close();
 			contentStream = new GZIPInputStream(new FileInputStream(file));
+
 		} finally {
 			contentStream.close();
 		}
+
 		return null;
 	}
 }

@@ -1,6 +1,6 @@
 ## This is a Digir Search Request template
 ##
-## Required Input  
+## Required Input	
 ## - concept
 ## See included templates for further requirements
 ##
@@ -24,49 +24,48 @@
 		<type>$type</type>
 	</header>
 	<search>
-  <filter>
-  #if(($lower && $upper) || ($upper && $country) || ($lower && $country))
-    <and>
-  #end
-  #if($lower)
-	<greaterThanOrEquals>
-	  <dwc:ScientificName>$lower</dwc:ScientificName>
-	</greaterThanOrEquals>
-  #end
-  #if($upper)
-    <lessThanOrEquals>
-	  <dwc:ScientificName>$upper</dwc:ScientificName>
-	</lessThanOrEquals>
-  #end
-  #if($country)
-    <or>
-  	  <like>
-  		<dwc:Country>France</dwc:Country>
-  	  </like>
-  	  <and>
-  		<greaterThanOrEquals>
-		  <dwc:Latitude>41.333740</dwc:Latitude>
-		</greaterThanOrEquals>
-		<lessThanOrEquals>
-		  <dwc:Latitude>51.089062</dwc:Latitude>
-		</lessThanOrEquals>
-		<greaterThanOrEquals>
-		  <dwc:Longitude>-5.140600</dwc:Longitude>
-		</greaterThanOrEquals>
-		<lessThanOrEquals>
-		  <dwc:Longitude>9.559320</dwc:Longitude>
-		</lessThanOrEquals>
-  	  </and>
-  	</or> 	
-  #end
- #if(($lower && $upper) || ($upper && $country) || ($lower && $country))
-  				</and>
-  #end
-  
-  </filter>
-    <records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end>
-    <structure schemaLocation="http://digir.sourceforge.net/schema/conceptual/darwin/full/2003/1.0/darwin2full.xsd"/>
-    </records>
-  <count>true</count>
-</search>
+		<filter>
+			#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+				<and>
+			#end
+			#if($lower)
+				<greaterThanOrEquals>
+					<dwc:ScientificName>$lower</dwc:ScientificName>
+				</greaterThanOrEquals>
+			#end
+			#if($upper)
+				<lessThanOrEquals>
+					<dwc:ScientificName>$upper</dwc:ScientificName>
+				</lessThanOrEquals>
+			#end
+			#if($country)
+				<or>
+					<like>
+						<dwc:Country>France</dwc:Country>
+					</like>
+					<and>
+						<greaterThanOrEquals>
+							<dwc:Latitude>41.333740</dwc:Latitude>
+						</greaterThanOrEquals>
+						<lessThanOrEquals>
+							<dwc:Latitude>51.089062</dwc:Latitude>
+						</lessThanOrEquals>
+						<greaterThanOrEquals>
+							<dwc:Longitude>-5.140600</dwc:Longitude>
+						</greaterThanOrEquals>
+						<lessThanOrEquals>
+							<dwc:Longitude>9.559320</dwc:Longitude>
+						</lessThanOrEquals>
+					</and>
+				</or>
+			#end
+ 			#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+				</and>
+			#end
+		</filter>
+		<records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end>
+			<structure schemaLocation="http://digir.sourceforge.net/schema/conceptual/darwin/full/2003/1.0/darwin2full.xsd"/>
+		</records>
+		<count>true</count>
+	</search>
 </request>

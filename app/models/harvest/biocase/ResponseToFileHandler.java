@@ -13,26 +13,23 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 public class ResponseToFileHandler implements ResponseHandler<Void> {
+	protected String file;
 
-  protected String file;
+	public ResponseToFileHandler(String file) {
+		this.file = file;
+	}
 
-  public ResponseToFileHandler(String file) {
-    this.file = file;
-  }
-
-  public Void handleResponse(HttpResponse response) throws IOException {
-    InputStream contentStream = response.getEntity().getContent();
-    try {
-      // store the response
-      GZIPOutputStream gos = new GZIPOutputStream(new FileOutputStream(file));
-      IOUtils.copy(contentStream, gos);
-      gos.close();
-      contentStream = new GZIPInputStream(new FileInputStream(file));
-
-    } finally {
-      contentStream.close();
-    }
-
-    return null;
-  }
+	public Void handleResponse(HttpResponse response) throws IOException {
+		InputStream contentStream = response.getEntity().getContent();
+		try {
+			// store the response
+			GZIPOutputStream gos = new GZIPOutputStream(new FileOutputStream(file));
+			IOUtils.copy(contentStream, gos);
+			gos.close();
+			contentStream = new GZIPInputStream(new FileInputStream(file));
+		} finally {
+			contentStream.close();
+		}
+		return null;
+	}
 }

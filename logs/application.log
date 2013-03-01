@@ -3008,3 +3008,9 @@ Caused by: java.lang.NullPointerException
 16:01:21,608 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
 16:01:27,599 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
 16:01:29,310 INFO  ~ Application 'gbiffrance-harvest' is now started !
+18:12:47,836 INFO  ~ Starting /home/jpm/web/gbif/gbiffrance-harvest
+18:12:48,098 WARN  ~ You're running Play! in DEV mode
+18:12:48,134 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+18:13:01,429 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
+18:13:01,871 INFO  ~ Application 'gbiffrance-harvest' is now started !
+18:22:01,568 INFO  ~ Connected to jdbc:mysql://localhost:3306/tb_moissonnage?autoreconnect=true?useUnicode=yes&characterEncoding=UTF-8&connectionCollation=utf8_general_ci

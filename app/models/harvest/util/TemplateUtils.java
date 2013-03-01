@@ -84,7 +84,8 @@ public class TemplateUtils {
 	 * a context object that does not exist 
 	 * @throws Exception On some other internal error - e.g the context object calling failed
 	 */
-	public static void merge(Template template, VelocityContext context, Writer writer) throws ResourceNotFoundException, ParseErrorException, MethodInvocationException, Exception {
+	public static void merge(Template template, VelocityContext context, Writer writer) 
+			throws ResourceNotFoundException, ParseErrorException, MethodInvocationException, Exception {
 		template.merge(context, writer);
 	}
 	
@@ -92,9 +93,10 @@ public class TemplateUtils {
 	 * Merges the temlate and returns it as a string.
 	 * @see TempalteUtils.merge(Template, VelocityContext, Writer)
 	 */
-	public static String merge(Template template, VelocityContext context) throws ResourceNotFoundException, ParseErrorException, MethodInvocationException, Exception {
+	public static String merge(Template template, VelocityContext context) 
+			throws ResourceNotFoundException, ParseErrorException, MethodInvocationException, Exception {
 		StringWriter writer = new StringWriter();
 		merge(template, context, writer);
 		return writer.toString();
-	}	
+	}
 }
