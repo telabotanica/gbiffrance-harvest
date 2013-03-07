@@ -2,6 +2,7 @@
 /bin
 /conf/application.conf
 /eclipse
+/logs
 /precompiled
 /tmp
 /.classpath
