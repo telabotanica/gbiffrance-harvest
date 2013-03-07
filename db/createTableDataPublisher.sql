@@ -5,4 +5,4 @@ CREATE TABLE `DataPublisher` (
   `name` varchar(255) DEFAULT NULL,
   `technicalContact` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
