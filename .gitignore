@@ -1,5 +1,6 @@
 /.settings
 /bin
+/conf/application.conf
 /eclipse
 /precompiled
 /tmp
