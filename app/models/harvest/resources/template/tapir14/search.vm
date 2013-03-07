@@ -5,7 +5,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://rs.tdwg.org/tapir/1.0 http://rs.tdwg.org/tapir/1.0/schema/tapir.xsd">
 	<header>
-		##<source>127.0.0.1</source>
+##		<source>127.0.0.1</source>
 		<destination#if($resource) resource="$resource"#end>$destination</destination>
 		<type>$type</type>
 	</header>
@@ -17,18 +17,21 @@
 			#end
 			#if($lower)
 				<greaterThanOrEquals>
-					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/><literal value="$lower"/>
+					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/>
+					<literal value="$lower"/>
 				</greaterThanOrEquals>
 			#end
 			#if($upper)
 				<lessThanOrEquals>
-					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/><literal value="$upper"/>
+					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/>
+					<literal value="$upper"/>
 				</lessThanOrEquals>
 			#end
 			#if($country)
 				<or>
 					<like>
-						<concept id="http://rs.tdwg.org/dwc/dwcore/Country"/><literal value="France"/>
+						<concept id="http://rs.tdwg.org/dwc/dwcore/Country"/>
+						<literal value="France"/>
 					</like>
 					<and>
 						<greaterThanOrEquals>
@@ -54,9 +57,7 @@
 				</and>
 			#end
 		</filter>
-		<records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end>
-			<structure schemaLocation="http://digir.sourceforge.net/schema/conceptual/darwin/full/2003/1.0/darwin2full.xsd"/>
-		</records>
+		<records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end />
 		<count>true</count>
 	</search>
 </request>

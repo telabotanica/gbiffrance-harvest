@@ -2,6 +2,7 @@ package models;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Dataset extends Model {
 	public String tempDirectory;
 	public String currentLower;
 	public boolean fromOutside;
-	
+
 	@OneToMany(mappedBy="dataset", cascade=CascadeType.ALL)
 	public List<Occurrence> occurrences;
 	
@@ -44,5 +45,10 @@ public class Dataset extends Model {
 	
 	public void markDataset(String status) {
 		this.status = status;
+	}
+	
+	public static List<String> getTypes() {
+		List<String> types = Arrays.asList("biocase", "digir", "ipt", "tapir14", "tapir2011");
+		return types;
 	}
 }

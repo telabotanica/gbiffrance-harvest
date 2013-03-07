@@ -495,11 +495,11 @@ public class Occurrence extends Model {
 			String earliestEraOrLowestErathem,
 			String latestEraOrHighestErathem,
 			String earliestPeriodOrLowestSystem,
-			String latestPeriodOrHigherSystem,
+			String latestPeriodOrHighestSystem,
 			String earliestEpochOrLowestSeries,
-			String latestEpochOrHigherSeries,
+			String latestEpochOrHighestSeries,
 			String earliestAgeOrLowestStage,
-			String latestAgeOrHigherStage,
+			String latestAgeOrHighestStage,
 			String lowestBiostratigraphicZone,
 			String highestBiostratigraphicZone,
 			String lithostratigraphicTerms,
@@ -666,11 +666,11 @@ public class Occurrence extends Model {
 		this.earliestEraOrLowestErathem = earliestEraOrLowestErathem;
 		this.latestEraOrHighestErathem = latestEraOrHighestErathem;
 		this.earliestPeriodOrLowestSystem = earliestPeriodOrLowestSystem;
-		this.latestPeriodOrHighestSystem = latestPeriodOrHigherSystem;
+		this.latestPeriodOrHighestSystem = latestPeriodOrHighestSystem;
 		this.earliestEpochOrLowestSeries = earliestEpochOrLowestSeries;
-		this.latestEpochOrHighestSeries = latestEpochOrHigherSeries;
+		this.latestEpochOrHighestSeries = latestEpochOrHighestSeries;
 		this.earliestAgeOrLowestStage = earliestAgeOrLowestStage;
-		this.latestAgeOrHighestStage = latestAgeOrHigherStage;
+		this.latestAgeOrHighestStage = latestAgeOrHighestStage;
 		this.lowestBiostratigraphicZone = lowestBiostratigraphicZone;
 		this.highestBiostratigraphicZone = highestBiostratigraphicZone;
 		this.lithostratigraphicTerms = lithostratigraphicTerms;

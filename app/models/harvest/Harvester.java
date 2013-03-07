@@ -83,6 +83,7 @@ public class Harvester {
 		}
 		f.setWritable(true, false);
 		this.dataset.tempDirectory = this.targetDirectory;
+		
 		// if the dataset is from outside, we add a country filter to our search
 		if (this.dataset.fromOutside) {
 			templateParams.put("country", "France");
@@ -105,8 +106,10 @@ public class Harvester {
 			if (this.dataset.type.equals("digir")) {
 				templateLocation = "models/harvest/resources/template/digir/search.vm";
 			} else if (this.dataset.type.equals("tapir14")) {
+				templateParams.put("type", "tapir");
 				templateLocation = "models/harvest/resources/template/tapir14/search.vm";
 			} else if (this.dataset.type.equals("tapir2011")) {
+				templateParams.put("type", "tapir");
 				templateLocation = "models/harvest/resources/template/tapir2011/search.vm";
 			} else {
 				LOG.error("Error in harvester selection");
@@ -136,7 +139,7 @@ public class Harvester {
 			} else {
 				e.printStackTrace();
 			}
-		} 
+		}
 	}
 	
 	/**
@@ -157,10 +160,10 @@ public class Harvester {
 				pageRange(null, "AAA", 0);
 			} catch (Exception e) {
 				LOG.error("Error in range [null-AAA]", e);
-				this.withErrors = true;	 
+				this.withErrors = true;
 				deleteTemporaryDirectory(this.dataset.tempDirectory, this.currentLower);
 				deleteOccurrencesFrom(this.dataset, this.currentLower);
-				throw new Exception("Error in range");					
+				throw new Exception("Error in range");
 			}
 			// loop on the name basis Aaa-Aaz
 			for (char c1 = 'A'; c1 <= 'Z'; c1++) {
@@ -172,10 +175,9 @@ public class Harvester {
 					this.currentStartAt = 0;
 					try {
 						pageRange(lower, upper, 0);
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						LOG.error("Error in range ["+lower+"-"+upper+"], message: "+ e.getMessage() + "\n cause: "+ e.getCause());
-					this.withErrors = true;	 
+						this.withErrors = true;
 						deleteTemporaryDirectory(this.dataset.tempDirectory, this.currentLower);
 						deleteOccurrencesFrom(this.dataset, this.currentLower);
 						throw new Exception("Error in range");
@@ -187,11 +189,12 @@ public class Harvester {
 			boolean incomplete = false;
 			char incompleteC1 = 'A';
 			char incompleteC2 = 'a';
-			for (char c1='A'; c1<='Z'; c1++) {
-				for (char c2='a'; c2<='z'; c2++) {
-					 String lower = c1 +"" + c2 +"a";
-					 String upper =	c1 +"" + c2 +"z";
-					 if (!(new File(this.dataset.tempDirectory + lower+"-"+upper+"-0.txt.gz").exists()) && new File(this.dataset.tempDirectory + lower+"-"+upper+"-0_.txt.gz").exists()) {
+			for (char c1='A'; c1 <= 'Z'; c1++) {
+				for (char c2 = 'a'; c2 <= 'z'; c2++) {
+					 String lower = c1 + "" + c2 + "a";
+					 String upper =	c1 + "" + c2 + "z";
+					 if (!(new File(this.dataset.tempDirectory + lower + "-" + upper + "-0.txt.gz").exists()) 
+						 	&& new File(this.dataset.tempDirectory + lower + "-" + upper + "-0_.txt.gz").exists()) {
 						LOG.info(("Harvester has stopped at " + this.dataset.tempDirectory +lower + "-" +upper +"-0.txt.gz"));
 						deleteTemporaryDirectory(this.dataset.tempDirectory, lower);
 						deleteOccurrencesFrom(this.dataset, lower);
@@ -204,7 +207,7 @@ public class Harvester {
 							if (!(new File(this.dataset.tempDirectory + lower+"-"+upper+"-"+startAt+".txt.gz").exists()) && new File(this.dataset.tempDirectory + lower+"-"+upper+"-"+startAt+"_.txt.gz").exists()) {
 								LOG.info(("Harvester has previously stopped at " + this.dataset.tempDirectory +lower + "-" +upper +"-0.txt.gz"));
 								deleteTemporaryDirectory(this.dataset.tempDirectory, lower);
-								deleteOccurrencesFrom(this.dataset, lower); 
+								deleteOccurrencesFrom(this.dataset, lower);
 								incomplete = true;
 								incompleteC1 = c1;
 								incompleteC2 = c2;
@@ -222,21 +225,21 @@ public class Harvester {
 			}
 			for (char c1 = incompleteC1; c1 <= 'Z'; c1++) {
 				for (char c2 = incompleteC2; c2 <= 'z'; c2++) {
-					String lower = c1 +"" + c2 +"a";
-					String upper =	c1 +"" + c2 +"z";
+					String lower = c1 + "" + c2 + "a";
+					String upper =	c1 + "" + c2 + "z";
 					this.currentLower = lower;
-						this.currentUpper = upper;
-						this.currentStartAt = 0;
+					this.currentUpper = upper;
+					this.currentStartAt = 0;
 					try {
 						pageRange(lower, upper, 0);
 					} catch (Exception e) {
-						LOG.error("Error in range ["+lower+"-"+upper+"], message: "+ e.getMessage() + "\n cause: "+ e.getCause());
+						LOG.error("Error in range [" + lower + "-" + upper + "], message: " + e.getMessage() + "\n cause: " + e.getCause());
 						this.withErrors = true;
 						deleteTemporaryDirectory(this.dataset.tempDirectory, this.currentLower);
 						deleteOccurrencesFrom(this.dataset, this.currentLower);
 						throw new Exception("Error in range");
 					}
-					if (c2=='z') {
+					if (c2 == 'z') {
 						incompleteC2 = 'a';
 					}
 				}
@@ -250,7 +253,7 @@ public class Harvester {
 		try {
 			pageRange("zzz", null, 0);
 		} catch (Exception e) {
-			LOG.error("Error in range [zzz-AAA]", e);
+			LOG.error("Error in range [zzz-null]", e);
 			this.withErrors = true;
 			deleteTemporaryDirectory(this.dataset.tempDirectory, this.currentLower);
 			deleteOccurrencesFrom(this.dataset, this.currentLower);
@@ -279,7 +282,7 @@ public class Harvester {
 					deleteOccurrencesFrom(this.dataset, this.currentLower);
 					throw new Exception("Error in range");
 				}
-				if (c2=='z') {
+				if (c2 == 'z') {
 					this.begin = this.begin.charAt(0) + "" + 'a';
 				}
 			}
@@ -295,7 +298,7 @@ public class Harvester {
 		templateParams.put("upper", upper);	
 		templateParams.put("startAt", Integer.toString(startAt));	
 		LOG.info("Starting lower[" + lower + "] upper[" + upper + "] start[" + startAt + "]");
-		
+
 		String query = TemplateUtils.getAndMerge(templateLocation, templateParams);
 		String request = buildURL(this.dataset.url, "request", query);
 		String requestFile = targetDirectory + ((lower == null)? "0_" + lower : lower) + "-" + upper + "-" + startAt +"_.txt.gz";
@@ -312,8 +315,13 @@ public class Harvester {
 		f.setExecutable(true, false);
 		
 		// issue request and store response
-		HttpGet httpget = new HttpGet(request);
-		LOG.info("Initiating Request[" + requestFile + "] for Range[" + lower + "-" + upper + "] starting at[" + startAt + "]");
+		HttpGet httpget = null;
+		try {
+			httpget = new HttpGet(request);
+			LOG.info("Initiating Request[" + requestFile + "] for Range[" + lower + "-" + upper + "] starting at[" + startAt + "]");
+		} catch(Exception e) {
+			LOG.debug("Error during HttpGet initialisation : " + e.getMessage() + ", " + e.getCause(), e);
+		}
 		
 		if (this.dataset.type.equals("biocase")) {
 			models.harvest.biocase.ResponseToFileHandler responseToFile = new models.harvest.biocase.ResponseToFileHandler(responseFile);

@@ -23,7 +23,7 @@ public class DataPublishers extends Controller {
 			validation.keep(); // keep the errors for the next request
 			add();
 		} else {
-			DataPublisher dataPublisher = new DataPublisher(name, description, administrativeContact, technicalContact);
+			DataPublisher dataPublisher = new DataPublisher(name.trim(), description.trim(), administrativeContact.trim(), technicalContact.trim());
 			dataPublisher.save();
 			Application.index();
 		}

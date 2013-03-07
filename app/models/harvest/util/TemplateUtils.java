@@ -51,6 +51,7 @@ public class TemplateUtils {
 	 * likely to be an error in the location, or a parameter problem
 	 */
 	public static String getAndMerge(String location, Map<String,String> parameters) throws Exception {
+		log.debug("Dans getAndMerge");
 		Template template = getTemplate(location);
 		log.debug("Template has been successfully loaded from: " + location);
 		VelocityContext context = new VelocityContext();
@@ -69,7 +70,14 @@ public class TemplateUtils {
 	 * @throws Exception On error - normally the location cannot be found
 	 */
 	public static Template getTemplate(String location) throws Exception {
-		return Velocity.getTemplate(location);
+		log.info("Dans getTemplate");
+		Template template = null;
+		try {
+			template = Velocity.getTemplate(location);
+		} catch (Exception e) {
+			log.error("Error with velocity getTemplate : " + e.getMessage() + e.getCause(), e);
+		}
+		return template;
 	}	
 	
 	/**

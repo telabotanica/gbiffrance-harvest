@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.DataPublisher;
 import models.Dataset;
+import play.Logger;
 import play.data.validation.Required;
 import play.mvc.Controller;
 
@@ -24,7 +25,7 @@ public class Datasets extends Controller {
 			validation.keep(); // keep the errors for the next request
 			add();
 		} else {
-			Dataset dataset = new Dataset(name, url, type, (DataPublisher) DataPublisher.findById(dataPublisherId));
+			Dataset dataset = new Dataset(name.trim(), url.trim(), type.trim(), (DataPublisher) DataPublisher.findById(dataPublisherId));
 			dataset.fromOutside = fromOutside;
 			dataset.save();
 			Application.index();
@@ -34,7 +35,8 @@ public class Datasets extends Controller {
 	public static void edit(long id) {
 		Dataset dataset = Dataset.findById(id);
 		List<DataPublisher> datapublishers = DataPublisher.all().fetch();
-		render(dataset, datapublishers);
+		List<String> datasetTypes =  Dataset.getTypes();
+		render(dataset, datapublishers, datasetTypes);
 	}
 	
 	public static void editSave(long id,
@@ -43,7 +45,6 @@ public class Datasets extends Controller {
 			@Required(message="Type is required") String type, 
 			@Required(message="You need to select a data publisher") Long dataPublisherId,
 			boolean fromOutside) {
-		System.out.println(name);
 		if (validation.hasErrors()) {
 			params.flash(); // add http parameters to the flash scope
 			validation.keep(); // keep the errors for the next request

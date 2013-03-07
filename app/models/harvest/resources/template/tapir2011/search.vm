@@ -1,34 +1,39 @@
-## This is a Tapir Search Request template for DarwinCore terms (2009-09-23) [http://rs.tdwg.org/dwc/terms/]
+## This is a Tapir Search Request template for DarwinCore terms (2011-10-26) [http://rs.tdwg.org/dwc/terms/]
 ##
 <?xml version="1.0" encoding="UTF-8"?>
 <request xmlns="http://rs.tdwg.org/tapir/1.0"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://rs.tdwg.org/tapir/1.0 http://rs.tdwg.org/tapir/1.0/schema/tapir.xsd">
+		xsi:schemaLocation="http://rs.tdwg.org/tapir/1.0 http://rs.tdwg.org/tapir/1.0/schema/tdwg_tapir.xsd">
 	<header>
-		##<source>127.0.0.1</source>
+##		<source>127.0.0.1</source>
 		<destination#if($resource) resource="$resource"#end>$destination</destination>
 		<type>$type</type>
 	</header>
 	<search count="true" #if($startAt) start="$startAt"#else start="0"#end limit="$maxResults">
-		<externalOutputModel location="http://rs.tdwg.org/tapir/cs/dwc/1.4/model/dw_core_geo_cur.xml" />
+## No xml file for version 2011-10-26 on http://rs.tdwg.org/tapir/cs/dwc/
+##		<externalOutputModel location="http://rs.tdwg.org/tapir/cs/dwc/1.4/model/dw_core_geo_cur.xml" />
+		<externalOutputModel location="http://www.tela-botanica.org/tapirlink/depot/dwc_2011_10_26_simple.xml" />
 		<filter>
 			#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
 				<and>
 			#end
 			#if($lower)
 				<greaterThanOrEquals>
-					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/><literal value="$lower"/>
+					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/>
+					<literal value="$lower"/>
 				</greaterThanOrEquals>
 			#end
 			#if($upper)
 				<lessThanOrEquals>
-					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/><literal value="$upper"/>
+					<concept id="http://rs.tdwg.org/dwc/dwcore/ScientificName"/>
+					<literal value="$upper"/>
 				</lessThanOrEquals>
 			#end
 			#if($country)
 				<or>
 					<like>
-						<concept id="http://rs.tdwg.org/dwc/dwcore/Country"/><literal value="France"/>
+						<concept id="http://rs.tdwg.org/dwc/dwcore/Country"/>
+						<literal value="France"/>
 					</like>
 					<and>
 						<greaterThanOrEquals>
@@ -54,9 +59,7 @@
 				</and>
 			#end
 		</filter>
-		<records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end>
-			<structure schemaLocation="http://digir.sourceforge.net/schema/conceptual/darwin/full/2003/1.0/darwin2full.xsd"/>
-		</records>
+		<records limit="$maxResults" #if($startAt) start="$startAt"#else start="0"#end />
 		<count>true</count>
 	</search>
 </request>

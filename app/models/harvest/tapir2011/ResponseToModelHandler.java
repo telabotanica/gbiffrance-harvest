@@ -167,15 +167,13 @@ public class ResponseToModelHandler {
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationID", "identificationID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identifiedBy", "identifiedBy");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:dateIdentified", "dateIdentified");
-			// No field in database :
-			//digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationReferences", "identificationReferences");
+			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationReferences", "identificationReferences");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationVerificationStatus", "identificationVerificationStatus");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationRemarks", "identificationRemarks");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:identificationQualifier", "identificationQualifier");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:typeStatus", "typeStatus");
 			
 			// Taxon
-			// TODO : vérifier existence des champs dans la bdd
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:taxonID", "taxonID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:scientificNameID", "scientificNameID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:acceptedNameUsageID", "acceptedNameUsageID");
@@ -211,7 +209,6 @@ public class ResponseToModelHandler {
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:taxonRemarks", "taxonRemarks");
 			
 			// Auxiliary Terms : ResourceRelationship
-			// TODO : vérifier existence des champs dans la bdd
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:resourceRelationshipID", "resourceRelationshipID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:resourceID", "resourceID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:relatedResourceID", "relatedResourceID");
@@ -221,7 +218,6 @@ public class ResponseToModelHandler {
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:relationshipRemarks", "relationshipRemarks");
 			
 			// Auxiliary Terms : MeasurementOrFact
-			// TODO : vérifier existence des champs dans la bdd
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:measurementID", "measurementID");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:measurementType", "measurementType");
 			digester.addBeanPropertySetter("*/SimpleDarwinRecord/dwc:measurementValue", "measurementValue");

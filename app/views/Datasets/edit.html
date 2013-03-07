@@ -24,12 +24,13 @@
 			<label>Type:</label>
 			<select id="type" name="type">
 				<option></option>
-				<option value ="biocase">biocase</option>
-				<option value ="digir">digir</option>
-				<option value ="ipt">ipt</option>
-				<option value ="tapir14">tapir 1.4</option>
-				<option value ="tapir2011">tapir 2011-10-26</option>
+				#{list items:datasetTypes, as:'type'}
+					<option ${dataset.type == type ? 'selected' : ''} value="${type}">
+						${type}
+					</option>
+				#{/list}
 			</select>
+
 			#{ifError 'type'}
 				<span class="alert alert-error">#{error 'type' /}</span>
 			#{/ifError}
@@ -38,7 +39,9 @@
 			<select id="dataPublisherId" name="dataPublisherId" width="200">
 				<option></option>
 				#{list items:datapublishers, as:'datapublisher'}
-					<option value ="${datapublisher.id}">${datapublisher.name}</option>
+					<option ${datapublisher.id == dataset.dataPublisher.id ? 'selected' : ''} value ="${datapublisher.id}">
+						${datapublisher.name}
+					</option>
 				#{/list}
 			</select>
 			#{ifError 'dataPublisherId'}
@@ -46,7 +49,7 @@
 			#{/ifError}
 			
 			<label>From outside?</label>
-			<input type="checkbox" name="fromOutside" value="true">
+			<input type="checkbox" name="fromOutside" ${dataset.fromOutside == true ? 'checked' : ''}>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" type="submit">Submit</button>
