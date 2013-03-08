@@ -13,6 +13,7 @@
  - Dans le Manager de Tomcat ajouter dans le formulaire les valeurs suivantes : `Chemin de context (requis):  /gbiffrance-harvest ` et `URL vers WAR ou répertoire: /home/tomcat/war/gbiffrance-harvest.war ` puis cliquer sur "Déployer"
  - Créer un dossier : ` mkdir /home/tomcat/moissonnage ` il servira à l'application pour stocker les fichiers de réponses du moissonnage
  - Se rendre dans : ` cd /home/tomcat/webapps/gbiffrance-harvest/WEB-INF/application/conf`
+ - Créer un fichier application.conf à partir du fichier application.default.conf : `cp application.default.conf application.conf`
  - Éditer le fichier application.conf : ` vi application.conf `
  - Modifier les paramètres login, password et database de la ligne : ` db=mysql://login:password@localhost:3306/database?autoreconnect=true `
  - Modifier la ligne : ` temp.path=/tmp ` en ` temp.path=/home/tomcat/moissonnage `
