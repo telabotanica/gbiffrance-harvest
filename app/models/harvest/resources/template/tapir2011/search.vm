@@ -14,7 +14,7 @@
 ##		<externalOutputModel location="http://rs.tdwg.org/tapir/cs/dwc/1.4/model/dw_core_geo_cur.xml" />
 		<externalOutputModel location="http://www.tela-botanica.org/tapirlink/depot/dwc_2011_10_26_simple.xml" />
 		<filter>
-			#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+			#if($lower && $upper)
 				<and>
 			#end
 			#if($lower)
@@ -29,33 +29,7 @@
 					<literal value="$upper"/>
 				</lessThanOrEquals>
 			#end
-			#if($country)
-				<or>
-					<like>
-						<concept id="http://rs.tdwg.org/dwc/dwcore/Country"/>
-						<literal value="France"/>
-					</like>
-					<and>
-						<greaterThanOrEquals>
-							<concept id="http://rs.tdwg.org/dwc/geospatial/DecimalLatitude"/>
-							<literal value="41.333740"/>
-						</greaterThanOrEquals>
-						<lessThanOrEquals>
-							<concept id="http://rs.tdwg.org/dwc/geospatial/DecimalLatitude"/>
-							<literal value="51.089062"/>
-						</lessThanOrEquals>	
-						<greaterThanOrEquals>
-							<concept id="http://rs.tdwg.org/dwc/geospatial/DecimalLongitude"/>
-							<literal value="-5.140600"/>
-						</greaterThanOrEquals>
-						<lessThanOrEquals>
-							<concept id="http://rs.tdwg.org/dwc/geospatial/DecimalLongitude"/>
-							<literal value="9.559320"/>
-						</lessThanOrEquals>
-					</and> 
-				</or>
-			#end
-			#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+			#if($lower && $upper)
 				</and>
 			#end
 		</filter>

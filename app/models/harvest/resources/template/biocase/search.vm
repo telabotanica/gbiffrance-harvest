@@ -13,7 +13,7 @@
 		<requestFormat>${contentNamespace}</requestFormat>
 		<responseFormat#if($startAt) start="$startAt"#else start="0"#end limit="1000">${contentNamespace}</responseFormat>
 		<filter>
-				#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+				#if($lower && $upper)
 					<and>
 				#end
 				#if($lower)
@@ -22,30 +22,7 @@
 				#if($upper)
 					<lessThanOrEquals path="$subject">$upper</lessThanOrEquals>
 				#end
-				#if($country)
-					<or>
-						<like path="/DataSets/DataSet/Units/Unit/Gathering/Country/Name">France</like>
-						<and>
-							<greaterThanOrEquals 
-									path="/DataSets/DataSet/Units/Unit/Gathering/SiteCoordinateSets/SiteCoordinates/CoordinatesLatLong/LatitudeDecimal">
-								41.333740
-							</greaterThanOrEquals>
-							<lessThanOrEquals 
-									path="/DataSets/DataSet/Units/Unit/Gathering/SiteCoordinateSets/SiteCoordinates/CoordinatesLatLong/LatitudeDecimal">
-								51.089062
-							</lessThanOrEquals>
-							<greaterThanOrEquals 
-									path="/DataSets/DataSet/Units/Unit/Gathering/SiteCoordinateSets/SiteCoordinates/CoordinatesLatLong/LongitudeDecimal">
-								-5.140600
-							</greaterThanOrEquals>
-							<lessThanOrEquals 
-									path="/DataSets/DataSet/Units/Unit/Gathering/SiteCoordinateSets/SiteCoordinates/CoordinatesLatLong/LongitudeDecimal">
-								9.559320
-							</lessThanOrEquals>
-						</and>
-					</or>
-				#end
-				#if(($lower && $upper) || ($upper && $country) || ($lower && $country))
+				#if($lower && $upper)
 					</and>
 				#end 
 		</filter>
